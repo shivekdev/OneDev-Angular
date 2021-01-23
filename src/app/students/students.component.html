@@ -1,0 +1,26 @@
+<h1>students</h1>
+
+<div>
+ <div><label>ID</label><input [(ngModel)]="newStudent.id" /></div>
+ <div><label>Name</label><input [(ngModel)]="newStudent.name" /></div>
+ <div><label>Grade</label><input [(ngModel)]="newStudent.grade"   /></div>
+ <!-- <div><label>Grade</label><input [value]="newStudent.grade" (change)=gradeChanged($event)  /></div> -->
+ <button (click)="addStudent()">Add Student</button>
+</div>
+<hr />
+
+
+<!-- <div>{{students | json}}</div> -->
+
+<div>
+  filter by grade :
+  <input type="text" [(ngModel)]= "minGrade" />
+</div>
+<div  *ngFor="let student of students | studentsPipline: minGrade"
+      style="margin: 10px; background-color: lightgray; width: 50%">
+  <div><a routerLink="/student-detail/{{student.id}}">{{student.id}}</a></div>
+  <div><button (click)="goDetail(student.id)">detail</button></div>
+  <div>{{student.name}}</div>
+  <div>{{student.grade}}</div>
+</div>
+

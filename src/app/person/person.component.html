@@ -1,0 +1,21 @@
+  <p>
+    person -
+    simulate data
+    binding {{ person.getFullName() }}</p>
+
+  <div style="background-color:yellow;"
+       [style.width.px]="divSize">
+        {{ person.id + " - " + person.name }}
+  </div>
+
+  <h3>use two way binding using [value] & (input)</h3>
+  <input [value]="person.name" (input)="txtPersonOnInput($event)" />
+
+  <h3>use two way binding using [(ng-model)]</h3>
+  <input [(ngModel)] = "person.name" />
+
+  <button (click)="clickMe($event)" >click me</button>
+
+  <br/>
+  <!-- do not do this !-->
+  <!-- <button onclick="document.getElementById('txtName').value = 'Mashoo Acher'">click me</button> -->
