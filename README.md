@@ -1,3 +1,5 @@
+ng-openapi-gen --input src/posts-v1.0.0.yml  --output src/app/api
+
 # DemoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.

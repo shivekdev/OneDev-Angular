@@ -1,46 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  AfterViewInit,  ViewChild} from '@angular/core';
 import { Post } from './post';
-//import {HttpClient} from '@angular/common/http';
 import { PostsService } from './posts.service';
-//import { catchError, map, tap } from 'rxjs/operators';
-
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements AfterViewInit {
+  dataSource
+  displayedColumns: string[] = ['id', 'userId', 'title', 'content'];
 
-
-  posts : Post[];
-  greet: string;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private postsService:PostsService) {}
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  //   this.postsService.getPosts().subscribe((posts:Post[]) =>  {
+  //     console.log(posts);
+  //     this.posts = posts;
+  //   });
+  // }
 
-    this.greet = this.postsService.sayHello("moshe");
-
-
-    // // promis
-    // x.then(success, error, notify);
-
-    // // observer
-    // x.subscribe(success, error, complete);
-
-
-    //  this.http.get("https://jsonplaceholder.typicode.com/posts").subscribe(resp =>{
-    //   console.log(resp);
-    //   this.posts = resp;
-    // })
-
-    //this.posts = this.postsService.getPosts();
-
+  ngAfterViewInit() {
     this.postsService.getPosts().subscribe((posts:Post[]) =>  {
-      console.log(posts);
-      this.posts = posts;
+      //console.log(posts);
+      this.dataSource = new MatTableDataSource(posts);
     });
-
-  }
-
+    if (this.sort) // check it is defined.{
+      this.dataSource.sort = this.sort;
+    }
 }
+
+

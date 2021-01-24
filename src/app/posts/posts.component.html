@@ -1,14 +1,47 @@
 <p>posts works!</p>
-
+<!--
 <h1>{{greet}}</h1>
 
-<!-- <div>{{posts | json }}</div> -->
+<div>{{posts | json }}</div> -->
 
-<div class="post-cube" *ngFor="let post of posts">
+<!-- <div class="post-cube" *ngFor="let post of posts">
   <h2>{{post.id + " - " + post.title}}</h2>
-  <h7>{{post.content}}</h7>
-</div>
+  <h6>{{post.content}}</h6>
+</div> -->
 
-<div>
+<!-- <div>
   message for the universe...regarding this very specific posts
-</div>
+</div>  -->
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="userId" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> u </th>
+    <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="content">
+    <th mat-header-cell *matHeaderCellDef> content </th>
+    <td mat-cell *matCellDef="let element"> {{element.content}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -3,3 +3,9 @@
   background-color:lightblue;
   margin: 10px;
 }
+table {
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}

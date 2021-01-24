@@ -14,7 +14,8 @@ import { StudentsPiplinePipe } from './students/students-pipline.pipe';
 import { PostsComponent } from './posts/posts.component';
 import { from } from 'rxjs';
 import { PostsService } from './posts/posts.service';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,9 @@ import { PostsService } from './posts/posts.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

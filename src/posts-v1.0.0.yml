@@ -1,0 +1,96 @@
+openapi: '3.0.2'
+info:
+  title: Posts from JSON Place Holder
+  version: '1.0'
+servers:
+  - url: https://jsonplaceholder.typicode.com
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: OK
+  /posts:
+    get:
+      responses:
+        '200':
+          description: this is how a post looks like
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+    post:
+      requestBody:
+        content:
+           application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: add new post success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Invalid tag value
+  /posts/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: this is how a post looks like
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+    put:
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+           application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: update post success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Invalid tag value
+components:
+  schemas:
+    Post:
+      type: object
+      required:
+        - "id"
+        - "userId"
+        - "title"
+        - "content"
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
