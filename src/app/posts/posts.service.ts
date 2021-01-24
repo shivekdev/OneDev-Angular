@@ -26,4 +26,8 @@ export class PostsService {
         return posts;
       }));
   }
+
+  GetPostByBodyLength(int minLength):Observable<Array<Post>>{
+    return null;
+  }
 }
