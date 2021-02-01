@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {Post as PostLocal} from './post';
 import {Post} from '../api/models';
 import {ApiService} from '../api/services';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
@@ -33,7 +34,9 @@ export class PostsService {
   // }
 
   getPosts():Observable<Array<PostLocal>>{
-      this.apiService.rootUrl = "https://jsonplaceholder.typicode.com";
+
+      //this.apiService.rootUrl = "https://jsonplaceholder.typicode.com";
+      this.apiService.rootUrl = environment.baseAPIPath ;
       return this.apiService.postsGet().pipe(map(resp => {
           let posts = new Array<PostLocal>();
               resp.forEach(item => {

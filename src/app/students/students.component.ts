@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from './student';
 import {Router} from '@angular/router';
+import {StudentsService} from './students.service';
 
 @Component({
   selector: 'app-students',
@@ -9,11 +10,12 @@ import {Router} from '@angular/router';
 })
 export class StudentsComponent implements OnInit {
 
+  student: any;
   students: Array<Student>;
   newStudent: any;
   minGrade: number;
 
-  constructor(private router:Router) {
+  constructor(private router:Router,  private studentsService:StudentsService) {
     this.students = new Array<any>();
   }
 
@@ -23,13 +25,19 @@ export class StudentsComponent implements OnInit {
     //   {id: 102, name:"bedford" , grade: 85},
     //   {id: 103, name:"anatholy" , grade: 90}
     // );
-    this.newStudent = new Student(0,"", 0);
-    this.students.push(new Student(101, "alfred", 80));
-    this.students.push(new Student(102, "bedford", 85));
-    this.students.push(new Student(103, "anatholy",90));
+    // this.newStudent = new Student(0,"", 0);
+    // this.students.push(new Student(101, "alfred", 80));
+    // this.students.push(new Student(102, "bedford", 85));
+    // this.students.push(new Student(103, "anatholy",90));
 
 
-    //this.student = this.students[0];
+
+     this.studentsService.getStudents().subscribe(resp =>{
+       this.students = resp;
+       this.student = this.students[0];
+     })
+
+
   }
 
   goDetail(studentId:number){
